@@ -20,12 +20,14 @@ from langchain.prompts import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
-from structure import Structure
+from .structure import Structure
 
 if os.path.exists('.env'):
     dotenv.load_dotenv()
-template = open("template.txt", "r").read()
-system = open("system.txt", "r").read()
+template_path = os.path.join(os.path.dirname(__file__), "template.txt")
+system_path = os.path.join(os.path.dirname(__file__), "system.txt")
+template = open(template_path, "r").read()
+system = open(system_path, "r").read()
 
 def parse_args():
     """解析命令行参数"""

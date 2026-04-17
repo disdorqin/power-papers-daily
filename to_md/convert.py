@@ -21,7 +21,8 @@ if __name__ == "__main__":
             data.append(json.loads(line))
 
     categories = set([item["categories"][0] for item in data])
-    template = open("paper_template.md", "r").read()
+    template_path = os.path.join(os.path.dirname(__file__), "paper_template.md")
+    template = open(template_path, "r").read()
     categories = sorted(categories, key=rank)
     cnt = {cate: 0 for cate in categories}
     for item in data:
