@@ -1,9 +1,10 @@
 arxiv:
-  categories:  # 电力预测相关领域
-    - cs.LG  # 机器学习
-    - cs.AI  # 人工智能
-    - eess.SP  # 信号处理
-    - stat.ML  # 统计机器学习
+  categories:
+    - eess.SP
+    - cs.LG
+    - physics.app-ph
+    - stat.ML
+    - cs.AI
 
 llm:
-  model_name: 'claude-haiku'  # 使用的LLM模型(最便宜)
+  model_name: 'claude-haiku'
