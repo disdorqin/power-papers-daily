@@ -8,7 +8,17 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Sensitive files
+.env
+.env.*
 ai/.env
+*.pem
+*.key
+credentials.json
+secrets/
+
 test/*
 .idea/
 .cursorrules
+debug.log

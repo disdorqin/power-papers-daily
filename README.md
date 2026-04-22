@@ -1,34 +1,47 @@
-# ⚡ 电力预测每日文献系统
+# ⚡ SOTA Papers Daily - 顶会前沿论文聚合
 
-> 全自动获取电力预测领域最新 arXiv 论文的 AI 增强摘要工具
+> 全自动收集 CVPR/ICCV/ECCV/NeurIPS/ICML/ICLR 等顶会最新 SOTA 论文，仅收录有开源代码的前沿研究
 
 ## 🎯 项目简介
 
-本项目专为**电力系统/电力预测**方向的本科生和研究人员设计,每天自动获取并 AI 总结以下领域的最新文献:
+本项目专为**计算机视觉/机器学习/时序预测/电力预测**方向的研究人员设计，聚合全球顶会最新 SOTA 论文：
 
-- 🔋 **机器学习在电力预测中的应用** (时间序列预测、深度学习)
-- 🌐 **微电网与能源系统优化**
-- ⚙️ **电力系统控制与稳定性**
-- 🤖 **新型 AI 模型** (Transformer、GNN 等) 在能源领域的应用
+- 🔥 **SOTA 模型论文** (必须有开源代码)
+- 📈 **时序预测前沿** (Time Series Forecasting)
+- ⚡ **电力预测应用** (Power/Energy Prediction)
+- 🤖 **新型 AI 模型** (Transformer、Diffusion、LLM 等)
 
 ## ✨ 核心特性
 
-🎯 **零基础设施需求**
-- 基于 GitHub Actions 和 Pages - 无需服务器
-- 完全免费部署和使用
+🎯 **智能 SOTA 过滤**
+- 仅收录有 GitHub 开源代码的论文
+- 自动识别 SOTA/benchmark/state-of-the-art 关键词
+- 聚焦时序预测和电力预测领域
+
+🌐 **多数据源聚合**
+- CVPR/ICCV/ECCV/NeurIPS/ICML/ICLR 等顶会
+- arXiv 最新论文实时抓取
+- Semantic Scholar 学术搜索
 
 🤖 **AI 智能摘要**
-- 每日自动爬取 arXiv 论文
-- Claude Haiku 模型生成中文摘要
-- 成本低廉:每天仅约 0.2 元
+- 自动生成中文结构化摘要
+- 提取 GitHub Stars 和代码信息
+- 领域标签自动分类
 
 💫 **智能阅读体验**
-- 个性化论文高亮显示
+- 按时间顺序展示，每页 20 篇
+- 领域过滤 (CV/ML/时序/电力)
 - 跨设备兼容 (桌面 & 移动端)
-- 本地偏好存储保护隐私
-- 灵活日期范围筛选
 
-👉 **[立即访问](https://disdorqin.github.io/power-papers-daily/)** - 无需安装
+👉 **[访问 SOTA 论文站](https://disdorqin.github.io/power-papers-daily/sota.html)** - 无需安装
+
+## 📊 数据源
+
+| 数据源 | 说明 | 更新频率 |
+|--------|------|----------|
+| CVPR2026-Papers-with-Code | CVPR 2026 官方论文列表 | 每日 |
+| arXiv API | 最新预印本论文 | 每日 |
+| Semantic Scholar | 学术论文搜索引擎 | 每日 |
 
 ## 📋 快速部署
 
@@ -46,6 +59,7 @@
 |-----------|-----|------|
 | `OPENAI_API_KEY` | (你的 API Key) | Xiavier API Key |
 | `OPENAI_BASE_URL` | `https://api.xiavier.com/v1` | Xiavier API 地址 |
+| `TOKEN_GITHUB` | (可选) | GitHub Token (获取 Stars) |
 | `ACCESS_PASSWORD` | (可选) | 访问密码保护 |
 
 ### 第三步: 配置 Variables
@@ -56,9 +70,8 @@
 
 | Variable 名称 | 值 | 说明 |
 |--------------|-----|------|
-| `CATEGORIES` | `cs.LG,cs.AI,eess.SP,stat.ML` | arXiv 分类 |
 | `LANGUAGE` | `Chinese` | 摘要语言 |
-| `MODEL_NAME` | `claude-haiku` | AI 模型 |
+| `MODEL_NAME` | `gpt-4o-mini` | AI 模型 |
 | `EMAIL` | (你的邮箱) | Git 提交邮箱 |
 | `NAME` | (你的名字) | Git 提交名称 |
 
@@ -68,7 +81,7 @@ Settings → Pages → Source 选择 **GitHub Actions**
 
 ### 第五步: 手动触发工作流
 
-Actions → arXiv-daily-ai-enhanced → Run workflow
+Actions → SOTA Papers Daily → Run workflow
 
 首次运行可能需要约 1 小时。
 
@@ -76,24 +89,31 @@ Actions → arXiv-daily-ai-enhanced → Run workflow
 
 | 项目 | 费用 |
 |------|------|
-| API 费用 | 约 0.2 元/天 |
+| API 费用 | 约 0.5 元/天 |
 | GitHub Actions | 免费额度足够 |
 | GitHub Pages | 完全免费 |
-| **总计** | **约 6 元/月** |
+| **总计** | **约 15 元/月** |
 
 ## 🔧 自定义配置
 
-### 修改 arXiv 分类
+### 修改 SOTA 过滤关键词
 
-编辑 `daily_arxiv/config.yaml`:
+编辑 `collect_sota_papers.py`:
 
-```yaml
-arxiv:
-  categories:
-    - cs.LG  # 机器学习
-    - cs.AI  # 人工智能
-    - eess.SP  # 信号处理
-    - stat.ML  # 统计机器学习
+```python
+SOTA_KEYWORDS = [
+    "state-of-the-art",
+    "sota",
+    "benchmark",
+    # ... 添加更多关键词
+]
+
+DOMAIN_KEYWORDS = [
+    "time series",
+    "power",
+    "electricity",
+    # ... 添加更多领域关键词
+]
 ```
 
 ### 修改 AI 模型
