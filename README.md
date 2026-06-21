@@ -1,136 +1,90 @@
-# ⚡ 电力预测每日文献系统
+<div align="center">
 
-> 全自动获取电力预测领域最新 arXiv 论文的 AI 增强摘要工具
+<img src="assets/banner.svg" width="100%" alt="power-papers-daily Banner" />
 
-## 🎯 项目简介
+</div>
 
-本项目专为**电力系统/电力预测**方向的本科生和研究人员设计,每天自动获取并 AI 总结以下领域的最新文献:
+## AI Literature Radar for Power Systems
 
-- 🔋 **机器学习在电力预测中的应用** (时间序列预测、深度学习)
-- 🌐 **微电网与能源系统优化**
-- ⚙️ **电力系统控制与稳定性**
-- 🤖 **新型 AI 模型** (Transformer、GNN 等) 在能源领域的应用
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![License](https://img.shields.io/github/license/disdorqin/power-papers-daily?style=flat-square&color=A3E635&logo=opensourceinitiative)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/disdorqin/power-papers-daily?style=flat-square&color=A855F7&logo=github)](https://github.com/disdorqin/power-papers-daily/stargazers)
+[![Status](https://img.shields.io/badge/STATUS-ACTIVE-A855F7?style=flat-square&logo=circle&logoColor=white)](https://github.com/disdorqin/power-papers-daily)
+[![Power Systems](https://img.shields.io/badge/DOMAIN-Power%20Systems%20%26%20Energy-00F5FF?style=flat-square)](https://github.com/disdorqin/power-papers-daily)
 
-## ✨ 核心特性
+---
 
-🎯 **零基础设施需求**
-- 基于 GitHub Actions 和 Pages - 无需服务器
-- 完全免费部署和使用
+> An AI-powered daily literature mining system for power systems and energy forecasting research. Automatically fetches, scores, and summarizes the latest papers from arXiv and other sources — delivering a daily research brief to your inbox or dashboard.
 
-🤖 **AI 智能摘要**
-- 每日自动爬取 arXiv 论文
-- Claude Haiku 模型生成中文摘要
-- 成本低廉:每天仅约 0.2 元
+## Why This Exists
 
-💫 **智能阅读体验**
-- 个性化论文高亮显示
-- 跨设备兼容 (桌面 & 移动端)
-- 本地偏好存储保护隐私
-- 灵活日期范围筛选
+Keeping up with the energy systems literature is a full-time job. This tool automates it: every day, it scans for new papers in electricity forecasting, microgrids, and energy optimization — then uses AI to extract the key findings.
 
-👉 **[立即访问](https://disdorqin.github.io/power-papers-daily/)** - 无需安装
+## Features
 
-## 📋 快速部署
+- **Daily arXiv Crawling** — automated fetch of latest preprints in power systems  
+- **AI-Powered Summarization** — LLM-generated summaries of key contributions  
+- **Relevance Scoring** — papers ranked by relevance to your research focus  
+- **Web Dashboard** — browse daily papers with an interactive UI  
+- **WeChat / Email Push** — daily digest delivered automatically  
+- **SOTA Tracking** — track state-of-the-art results over time  
 
-### 第一步: Fork 仓库
+## Architecture
 
-点击页面右上角的 **Fork** 按钮,将此仓库复制到你自己的 GitHub 账户。
+<div align="center">
+  <img src="assets/architecture.svg" width="100%" alt="Architecture" />
+</div>
 
-### 第二步: 配置 Secrets
+## Quick Start
 
-进入仓库 → Settings → Secrets and variables → Actions → Secrets
+```bash
+# Clone and install
+git clone https://github.com/disdorqin/power-papers-daily.git
+cd power-papers-daily
+npm install
 
-添加以下 Secrets:
+# Configure your research interests
+cp .env.example .env
+# Edit .env with your API keys and preferences
 
-| Secret 名称 | 值 | 说明 |
-|-----------|-----|------|
-| `OPENAI_API_KEY` | (你的 API Key) | Xiavier API Key |
-| `OPENAI_BASE_URL` | `https://api.xiavier.com/v1` | Xiavier API 地址 |
-| `ACCESS_PASSWORD` | (可选) | 访问密码保护 |
+# Run the daily fetch
+npm start
 
-### 第三步: 配置 Variables
-
-进入仓库 → Settings → Secrets and variables → Actions → Variables
-
-添加以下 Variables:
-
-| Variable 名称 | 值 | 说明 |
-|--------------|-----|------|
-| `CATEGORIES` | `cs.LG,cs.AI,eess.SP,stat.ML` | arXiv 分类 |
-| `LANGUAGE` | `Chinese` | 摘要语言 |
-| `MODEL_NAME` | `claude-haiku` | AI 模型 |
-| `EMAIL` | (你的邮箱) | Git 提交邮箱 |
-| `NAME` | (你的名字) | Git 提交名称 |
-
-### 第四步: 启用 GitHub Pages
-
-Settings → Pages → Source 选择 **GitHub Actions**
-
-### 第五步: 手动触发工作流
-
-Actions → arXiv-daily-ai-enhanced → Run workflow
-
-首次运行可能需要约 1 小时。
-
-## 💰 成本估算
-
-| 项目 | 费用 |
-|------|------|
-| API 费用 | 约 0.2 元/天 |
-| GitHub Actions | 免费额度足够 |
-| GitHub Pages | 完全免费 |
-| **总计** | **约 6 元/月** |
-
-## 🔧 自定义配置
-
-### 修改 arXiv 分类
-
-编辑 `daily_arxiv/config.yaml`:
-
-```yaml
-arxiv:
-  categories:
-    - cs.LG  # 机器学习
-    - cs.AI  # 人工智能
-    - eess.SP  # 信号处理
-    - stat.ML  # 统计机器学习
+# Or set up auto-run with GitHub Actions (already configured)
 ```
 
-### 修改 AI 模型
+## Example Output
 
-编辑 `daily_arxiv/config.yaml`:
+See the [live dashboard](https://disdorqin.github.io/power-papers-daily) for today's papers.
 
-```yaml
-llm:
-  model_name: 'claude-haiku'  # 最便宜的模型
-```
+Papers are scored on:
+- **Time relevance** (how recent)
+- **Journal impact** (where published)
+- **Citation velocity** (how fast it's being cited)
+- **Topic alignment** (match with your research)
 
-## 📚 常用 arXiv 分类
+## Roadmap
 
-| 分类代码 | 领域 |
-|---------|------|
-| cs.LG | 机器学习 |
-| cs.AI | 人工智能 |
-| cs.CV | 计算机视觉 |
-| cs.CL | 计算语言学 |
-| eess.SP | 信号处理 |
-| stat.ML | 统计机器学习 |
-| eess.SY | 系统与控制 |
+- [x] Daily arXiv ingestion
+- [x] AI summary generation
+- [x] Web dashboard
+- [ ] Integration with DARIS for automated literature review
+- [ ] Multi-source aggregation (IEEE Xplore, ScienceDirect)
+- [ ] Personalized recommendation engine
 
-## ⚠️ 重要提醒
+## Tech Stack
 
-- 🔒 **保护你的 API Key**: 永远不要将 API Key 提交到代码中
-- 🔄 **定期更新**: 建议每月检查一次配置
-- 📊 **监控使用量**: 定期检查 API 使用情况和费用
+JavaScript · Node.js · Python · OpenAlex API · LLM APIs · HTML/CSS
 
-## 🤝 贡献
+## Star History
 
-欢迎提交 Issue 和 Pull Request!
+[![Star History Chart](https://api.star-history.com/svg?repos=disdorqin/power-papers-daily&type=Date)](https://star-history.com/#disdorqin/power-papers-daily&Date)
 
-## 📄 许可证
+## Contributing
 
-MIT License
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## 🙏 致谢
+## License
 
-本项目基于 [daily-arXiv-ai-enhanced](https://github.com/dw-dengwei/daily-arXiv-ai-enhanced) 定制开发,感谢原作者的贡献!
+MIT — see [LICENSE](LICENSE).
