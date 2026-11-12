@@ -1,8 +1,6 @@
 name: SOTA Papers Daily
 
 on:
-  schedule:
-    - cron: "0 2 * * *"  # 每天 UTC 2:00 (北京时间 10:00)
   workflow_dispatch:  # 允许手动触发
 
 jobs:
